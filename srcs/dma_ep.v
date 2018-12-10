@@ -62,7 +62,7 @@ module dma_ep
 	wire	[BYTE_BIT_ENABLE-1:0]m_axis_h2c_tkeep;
 	
 	reg		[25:0]heartbeat;
-        
+    reg     user_rst;
     
     assign led[0] = user_link_up;
     assign led[1] = heartbeat[25];
@@ -76,6 +76,17 @@ module dma_ep
     always@(posedge user_clk)
     begin
         heartbeat <= #TCQ heartbeat + 1'b1;
+    end
+    
+    //reset
+    always@(posedge user_clk)
+    begin
+        if(!user_aresetn) begin
+            user_rst <= #TCQ 1'b0;
+        end
+        else begin
+            user_rst <= #TCQ user_link_up;
+        end
     end
      
     //xdma ip     
@@ -122,7 +133,7 @@ module dma_ep
      )
      app_i(
         .user_clk           (user_clk),
-        .user_rst           (user_aresetn),
+        .user_rst           (user_rst),
         .m_axis_c2h_tdata   (s_axis_c2h_tdata),
         .m_axis_c2h_tlast   (s_axis_c2h_tlast),
         .m_axis_c2h_tvalid  (s_axis_c2h_tvalid),

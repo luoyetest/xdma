@@ -46,7 +46,9 @@ module partition
         input	[COL_MAX_SIZE-1:0]data_fifo_full,
         //
         input   process_done,
-        output  paritition_done
+        output  paritition_done,
+        output  [ALIGN_BITS-1:0]target_o,
+        output  [ALIGN_BITS-1:0]second_row_o
     );
     
     localparam RST = 3'b000, WAIT_TARGET = 3'b001, SET_COUNT = 3'b011, SET_INFO = 3'b111, SET_DATA = 3'b110, WAIT_PROCESS = 3'b100;
@@ -78,6 +80,8 @@ module partition
     assign info_fifo_wr_en = s_axis_h2c_tvalid? info_seq:4'b0000;
     assign s_axis_h2c_tready = s_axis_h2c_tready_q;
     assign paritition_done = paritition_done_q;
+    assign target_o = target;
+    assign second_row_o = second_row;
     
     assign data_fifo_din = s_axis_h2c_tdata;
     assign info_fifo_din = s_axis_h2c_tdata;

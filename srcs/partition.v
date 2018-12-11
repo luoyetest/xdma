@@ -148,7 +148,7 @@ module partition
                 	//format
                     if(s_axis_h2c_tvalid && info_rows>0 && info_head_flag)
                     begin
-						info_len <= #TCQ {3'b0000, s_axis_h2c_tdata[95:84]} - s_axis_h2c_tdata[83:80]>0?0:1;
+						info_len <= #TCQ {3'b0000, s_axis_h2c_tdata[95:84]} - (s_axis_h2c_tdata[83:80]>0?0:1);
 						//
 						if(s_axis_h2c_tdata[95:84]>1 || (s_axis_h2c_tdata[95:84]==1 && s_axis_h2c_tdata[83:80]>0))
 						begin
@@ -218,7 +218,7 @@ module partition
 					begin
 						case(data_seq)
 							4'b0001:begin
-								d_len <= #TCQ {3'b0000, d0_len[15:4]} - d0_len[3:0]>0?0:1;
+								d_len <= #TCQ {3'b0000, d0_len[15:4]} - (d0_len[3:0]>0?0:1);
 								if(d0_len[15:4]>1 || (d0_len[15:4]==1 && d0_len[3:0]>0))
 								begin
 									data_head_flag <= #TCQ 1'b0;
@@ -235,7 +235,7 @@ module partition
 								end
 							end
 							4'b0010:begin
-								d_len <= #TCQ {3'b0000, d1_len[15:4]} - d1_len[3:0]>0?0:1;
+								d_len <= #TCQ {3'b0000, d1_len[15:4]} - (d1_len[3:0]>0?0:1);
 								if(d1_len[15:4]>1 || (d1_len[15:4]==1 && d1_len[3:0]>0))
 								begin
 									data_head_flag <= #TCQ 1'b0;
@@ -252,7 +252,7 @@ module partition
 								end
 							end
 							4'b0100:begin
-								d_len <= #TCQ {3'b0000, d2_len[15:4]} - d2_len[3:0]>0?0:1;
+								d_len <= #TCQ {3'b0000, d2_len[15:4]} - (d2_len[3:0]>0?0:1);
 								if(d2_len[15:4]>1 || (d2_len[15:4]==1 && d2_len[3:0]>0))
 								begin
 									data_head_flag <= #TCQ 1'b0;
@@ -269,7 +269,7 @@ module partition
 								end
 							end
 							4'b1000:begin
-								d_len <= #TCQ {3'b0000, d3_len[15:4]} - d3_len[3:0]>0?0:1;
+								d_len <= #TCQ {3'b0000, d3_len[15:4]} - (d3_len[3:0]>0?0:1);
 								if(d3_len[15:4]>1 || (d3_len[15:4]==1 && d3_len[3:0]>0))
 								begin
 									data_head_flag <= #TCQ 1'b0;

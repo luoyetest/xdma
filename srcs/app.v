@@ -165,7 +165,7 @@ module app
         .empty(fifo_empty)
     );
     
-    info_0 info_0_i(
+    fifo_512 info_0_i(
         .clk(user_clk),
         .srst(rst_p),
         .din(info_fifo_din),
@@ -176,7 +176,7 @@ module app
         .empty(info_0_empty)
     );    
 
-    info_1 info_1_i(
+    fifo_512 info_1_i(
         .clk(user_clk),
         .srst(rst_p),
         .din(info_fifo_din),
@@ -187,7 +187,7 @@ module app
         .empty(info_1_empty)
     );  
     
-    info_2 info_2_i(
+    fifo_512 info_2_i(
         .clk(user_clk),
         .srst(rst_p),
         .din(info_fifo_din),
@@ -198,7 +198,7 @@ module app
         .empty(info_2_empty)
     );  
     
-    info_3 info_3_i(
+    fifo_512 info_3_i(
         .clk(user_clk),
         .srst(rst_p),
         .din(info_fifo_din),
@@ -209,7 +209,7 @@ module app
         .empty(info_3_empty)
     );  
     
-    data_3 data_3_i(
+    fifo_512 data_3_i(
         .clk(user_clk),
         .srst(rst_p),
         .din(data_fifo_din),
@@ -219,7 +219,7 @@ module app
         .full(data_fifo_full[3]),
         .empty(data_3_empty)
     ); 
-    data_2 data_2_i(
+    fifo_512 data_2_i(
         .clk(user_clk),
         .srst(rst_p),
         .din(data_fifo_din),
@@ -229,7 +229,7 @@ module app
         .full(data_fifo_full[2]),
         .empty(data_2_empty)
     ); 
-    data_1 data_1_i(
+    fifo_512 data_1_i(
         .clk(user_clk),
         .srst(rst_p),
         .din(data_fifo_din),
@@ -239,7 +239,7 @@ module app
         .full(data_fifo_full[1]),
         .empty(data_1_empty)
     ); 
-    data_0 data_0_i(
+    fifo_512 data_0_i(
         .clk(user_clk),
         .srst(rst_p),
         .din(data_fifo_din),
@@ -247,7 +247,7 @@ module app
         .rd_en(data_0_rd_en),
         .dout(data_0_dout),
         .full(data_fifo_full[0]),
-        .empty(data_3_empty)
+        .empty(data_0_empty)
     ); 
     
 endmodule

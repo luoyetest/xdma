@@ -154,6 +154,55 @@ module app
         .data_len(data_len)
     );
     
+    filter #(
+        .TCQ(TCQ),
+        .DATA_WIDTH(DATA_WIDTH)
+    )filter_i(
+        .user_clk		(user_clk),
+        .user_rst		(user_rst),
+            //
+        .paritition_done(paritition_done),
+        .process_done	(process_done),
+            //data out fifo port
+        .dout 			(fifo_din),
+        .wr_en 			(fifo_wr_en),
+        .full  			(fifo_full),
+        .len 			(data_len),
+            //
+        .target 		(target),
+        .second_row 	(second_row),
+            //info in fifo port
+        .info_0_rd_en 	(info_0_rd_en),
+        .info_0_dout 	(info_0_dout),
+        .info_0_empty	(info_0_empty),
+
+        .info_1_rd_en 	(info_1_rd_en),
+        .info_1_dout 	(info_1_dout),
+        .info_1_empty	(info_1_empty),
+
+        .info_2_rd_en 	(info_2_rd_en),
+        .info_2_dout 	(info_2_dout),
+        .info_2_empty	(info_2_empty),
+
+        .info_3_rd_en 	(info_3_rd_en),
+        .info_3_dout 	(info_3_dout),
+        .info_3_empty	(info_3_empty), 
+            //data in fifo port
+        .data_0_rd_en 	(data_0_rd_en),
+        .data_0_dout 	(data_0_dout),
+        .data_0_empty	(data_0_empty),
+        .data_1_rd_en 	(data_1_rd_en),
+        .data_1_dout 	(data_1_dout),
+        .data_1_empty	(data_1_empty),
+        .data_2_rd_en 	(data_2_rd_en),
+        .data_2_dout 	(data_2_dout),
+        .data_2_empty	(data_2_empty),
+        .data_3_rd_en 	(data_3_rd_en),
+        .data_3_dout 	(data_3_dout),
+        .data_3_empty	(data_3_empty)
+        );
+    
+    
     back back_i(
         .clk(user_clk),
         .srst(rst_p),
